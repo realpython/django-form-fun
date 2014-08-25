@@ -1,0 +1,37 @@
+{% extends "talk/base.html" %}
+{% block content %}
+<br><br>
+<div class="row white">
+    <div class="large-12 columns">
+        <a href="/logout" class="right">Logout</a>
+        <h2>Hi, {{request.user.username}}</h2>
+    </div>
+</div>
+<div class="row white">
+    <div class="columns large-12">
+        <form action="/create_post/" method="POST">
+            {% csrf_token %}
+            <div class="fieldWrapper">
+                {{ form.text }}
+            </div>
+            <input type="submit" value="Post" class="tiny button">
+        </form>
+    </div>
+</div>
+
+<!-- The feed -->
+<div class="row white">
+    <div class="columns large-12">
+        <ul>
+            {% for post in all_posts %}
+                <li>
+                    <strong>{{ post.text }}</strong> -
+                    <em>{{ post.author }}</em> -
+                    <span>{{ post.created }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
