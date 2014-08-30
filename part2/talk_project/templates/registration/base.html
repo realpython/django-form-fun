@@ -1,0 +1,27 @@
+{% load staticfiles %}
+
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block head %}
+
+    {% endblock %}
+    <link rel="stylesheet" href="{% static "bower_components/foundation/css/foundation.css" %}" />
+    <script src="{% static "bower_components/modernizr/modernizr.js" %}"></script>
+  </head>
+  <body>
+
+    <div class='row'>
+      {% block content %}
+      {% endblock %}
+    </div>
+
+    <script src="{% static "bower_components/jquery/dist/jquery.js" %}"></script>
+    <script src="{% static "bower_components/foundation/js/foundation.min.js" %}"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>

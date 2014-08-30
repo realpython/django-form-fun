@@ -26,7 +26,7 @@
     <div class="columns large-12">
         <ul id="talk">
             {% for post in all_posts %}
-                <li>
+                <li id='post-{{post.pk}}'>
                     <strong>{{ post.text }}</strong> -
                     <em>{{ post.author }}</em> -
                     <span>{{ post.created }}</span> -
