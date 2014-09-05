@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import QueryDict
 from talk.models import Post
 from talk.forms import PostForm
 
@@ -53,8 +54,10 @@ def create_post(request):
 
 
 def delete_post(request):
-    if request.method == 'POST':
-        post = Post.objects.get(pk=int(request.POST.get('postpk')))
+
+    if request.method == 'DELETE':
+
+        post = Post.objects.get(pk=int(QueryDict(request.body).get('postpk')))
 
         post.delete()
 

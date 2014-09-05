@@ -44,8 +44,8 @@ $(function() {
         if (confirm('are you sure you want to remove this post?')==true){
             $.ajax({
                 url : "delete_post/", // the endpoint
-                type : "POST", // http method
-                data : { postpk : post_primary_key }, // data sent with the post request
+                type : "DELETE", // http method
+                data : { postpk : post_primary_key }, // data sent with the delete request
                 success : function(json) {
                     // hide the post
                   $('#post-'+post_primary_key).hide(); // hide the post on success
