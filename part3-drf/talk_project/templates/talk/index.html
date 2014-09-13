@@ -1,0 +1,42 @@
+{% extends "talk/base.html" %}
+{% block content %}
+<br><br>
+<div class="row white">
+    <div class="large-12 columns">
+        <a href="/logout" class="right">Logout</a>
+        <h2>Hi, {{request.user.username}}</h2>
+    </div>
+</div>
+
+<div class="row white">
+    <div class="columns large-12">
+        <form method="POST" id="post-form">
+            {% csrf_token %}
+            <div class="fieldWrapper" id="the_post">
+                {{ form.text }}
+            </div>
+            <div id="results"></div>
+            <input type="submit" value="Post" class="tiny button">
+        </form>
+    </div>
+</div>
+
+<!-- The feed -->
+<div class="row white">
+    <div class="columns large-12">
+        <ul id="talk">
+            {% for post in all_posts %}
+                <li id='post-{{post.pk}}'>
+                    <strong>{{ post.text }}</strong> -
+                    <em>{{ post.author }}</em> -
+                    <span>{{ post.created }}</span> -
+                    <a id='delete-post-{{post.id}}'>delete me</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<!-- scripts -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
+<script src="static/scripts/main.js"></script>
+{% endblock %}

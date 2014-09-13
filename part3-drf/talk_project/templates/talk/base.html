@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>talk to me</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Foundation & FontAwesome -->
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/css/foundation.css">
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/trianglify/0.1.2/trianglify.min.js"></script>
+
+    <script type="text/javascript">
+    // random background pattern
+    $(function(){
+
+      // See more options here: https://github.com/qrohlf/trianglify#options
+      var ops = {
+        noiseIntensity: 0,
+      }
+      var t = new Trianglify(ops);
+      var pattern = t.generate(document.body.clientWidth, document.body.clientHeight);
+      document.body.setAttribute('style', 'background-image: '+pattern.dataUrl);
+    });
+    </script>
+      <style type="text/css">
+      .comment{
+        background:rgba(255,255,255,1);
+        padding: 8px;
+        margin-bottom:5px;
+        border:none;
+      }
+      .white{
+        background:rgba(255,255,255,1);
+        padding-top: 10px;
+        border:none;
+      }
+      .commentcenter{
+        position:relative;
+        left:43%;
+      }
+      input.textarea:focus{
+        height:1.5em;
+        resize:none;
+      }
+      textarea{
+        height:1.5em;
+        resize:none;
+      }
+    </style>
+
+    {% block head %}
+    {% endblock %}
+
+  </head>
+
+  <body>
+  {% block content %}
+  {% endblock %}
+  </body>
+</html>
