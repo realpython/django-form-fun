@@ -11,9 +11,9 @@ $(function() {
             success : function(json) {
                 for (var i = 0; i < json.length; i++) {
                     dateString = convert_to_readable_date(json[i].created)
-                    $("#talk").prepend("<li id='post-"+json[i].postpk+"'><strong>"+json[i].text+
-                        "</strong> - <em> "+json[i].author.username+"</em> - <span> "+dateString+
-                        "</span> - <a id='delete-post-"+json[i].postpk+"'>delete me</a></li>");
+                    $("#talk").prepend("<li id='post-"+json[i].id+"'><strong>"+json[i].text+
+                        "</strong> - <em> "+json[i].author+"</em> - <span> "+dateString+
+                        "</span> - <a id='delete-post-"+json[i].id+"'>delete me</a></li>");
                 }
             },
             // handle a non-successful response
@@ -56,9 +56,10 @@ $(function() {
             success : function(json) {
                 $('#post-text').val(''); // remove the value from the input
                 console.log(json); // log the returned json to the console
-                $("#talk").prepend("<li id='post-"+json.postpk+"'><strong>"+json.text+"</strong> - <em> "+
-                    json.author+"</em> - <span> "+json.created+
-                    "</span> - <a id='delete-post-"+json.postpk+"'>delete me</a></li>");
+                dateString = convert_to_readable_date(json.created)
+                $("#talk").prepend("<li id='post-"+json.id+"'><strong>"+json.text+"</strong> - <em> "+
+                    json.author+"</em> - <span> "+dateString+
+                    "</span> - <a id='delete-post-"+json.id+"'>delete me</a></li>");
                 console.log("success"); // another sanity check
             },
             // handle a non-successful response
@@ -74,7 +75,7 @@ $(function() {
     function delete_post(post_primary_key){
         if (confirm('are you sure you want to remove this post?')==true){
             $.ajax({
-                url : "delete_post/", // the endpoint
+                url : "api/v1/posts/"+post_primary_key, // the endpoint
                 type : "DELETE", // http method
                 data : { postpk : post_primary_key }, // data sent with the delete request
                 success : function(json) {
