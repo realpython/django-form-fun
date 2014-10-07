@@ -6,7 +6,7 @@ from talk.models import Post
 class PostSerializer(serializers.ModelSerializer):
 
     author = serializers.SlugRelatedField(
-        queryset=User.objects.all(), slug_field='username'
+        queryset=User.objects.filter(), slug_field='username'
     )
 
     class Meta:

@@ -4,7 +4,7 @@
 <div class="row white">
     <div class="large-12 columns">
         <a href="/logout" class="right">Logout</a>
-        <h2>Hi, {{request.user.username}}</h2>
+        <h2>Hi, <span id="user">{{request.user.username}}</span></h2>
     </div>
 </div>
 
@@ -34,6 +34,7 @@
                 </li>
             {% endfor %}
         </ul>
+        <span id="next"></span>
     </div>
 </div>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>

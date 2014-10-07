@@ -1,7 +1,7 @@
 from talk.models import Post
 from talk.forms import PostForm
 from talk.serializers import PostSerializer
-from rest_framework import mixins, generics
+from rest_framework import generics
 from django.shortcuts import render
 
 
@@ -14,32 +14,41 @@ def home(request):
 ### class based views ###
 #########################
 
-class PostCollection(mixins.ListModelMixin,
-                     mixins.CreateModelMixin,
-                     generics.GenericAPIView):
-
+class PostCollection(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-
-
-class PostMember(mixins.RetrieveModelMixin,
-                 mixins.DestroyModelMixin,
-                 generics.GenericAPIView):
-
+class PostMember(generics.RetrieveDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
+# class PostCollection(mixins.ListModelMixin,
+#                      mixins.CreateModelMixin,
+#                      generics.ListAPIView):
 
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
+#     queryset = Post.objects.all()
+#     serializer_class = PostSerializer
+
+#     def get(self, request, *args, **kwargs):
+#         return self.list(request, *args, **kwargs)
+
+#     def post(self, request, *args, **kwargs):
+#         return self.create(request, *args, **kwargs)
+
+
+# class PostMember(mixins.RetrieveModelMixin,
+#                  mixins.DestroyModelMixin,
+#                  generics.GenericAPIView):
+
+#     queryset = Post.objects.all()
+#     serializer_class = PostSerializer
+
+#     def get(self, request, *args, **kwargs):
+#         return self.retrieve(request, *args, **kwargs)
+
+#     def delete(self, request, *args, **kwargs):
+#         return self.destroy(request, *args, **kwargs)
 
 ############################
 ### function based views ###

@@ -51,7 +51,7 @@ $(function() {
         $.ajax({
             url : "api/v1/posts/", // the endpoint
             type : "POST", // http method
-            data : { text : $('#post-text').val() }, // data sent with the post request
+            data : { text : $('#post-text').val(), author: $('#user').text()}, // data sent with the post request
             // handle a successful response
             success : function(json) {
                 $('#post-text').val(''); // remove the value from the input
